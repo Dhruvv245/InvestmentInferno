@@ -211,5 +211,5 @@ document.getElementById("buy-tip").addEventListener('click', async () => {
   setTimeout(() => {
     document.getElementById("tip-message").style.display = "none";
     document.getElementById("tips-button").style.display = "block";
-  }, 7000);
+  }, 10000);
 });
