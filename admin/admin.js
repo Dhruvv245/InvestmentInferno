@@ -72,10 +72,8 @@ router
     const data = req.body;
     const io = req.app.get("socketio");
     io.emit("message", { data: data });
-    const stockNum = req.body.stockNum;
-    const filter = { stockNum: stockNum };
     const update = { message: req.body.message };
-    await Stock.findOneAndUpdate(filter, update, {
+    await Stock.updateMany({}, update, {
       new: true,
     })
       .then((result) => {
