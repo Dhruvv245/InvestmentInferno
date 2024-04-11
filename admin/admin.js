@@ -69,6 +69,9 @@ router
   })
   .post(async (req, res, next) => {
     console.log(req.body);
+    const data = req.body;
+    const io = req.app.get("socketio");
+    io.emit("message", { data: data });
     const stockNum = req.body.stockNum;
     const filter = { stockNum: stockNum };
     const update = { message: req.body.message };
@@ -89,7 +92,7 @@ router.route("/test5").get(async (req, res) => {
     { leader: false },
     {
       new: true,
-      upsert: true, 
+      upsert: true,
     }
   )
     .then((result) => {
@@ -119,13 +122,13 @@ router.route("/test6").get(async (req, res) => {
     });
 });
 
-router.route("/test7").get(getChart,async (req, res) => {
+router.route("/test7").get(getChart, async (req, res) => {
   await Admin.findOneAndUpdate(
     { _id: "6431cd246b8a210baa7d1fe0" },
     { Start: true },
     {
       new: true,
-      upsert: true, 
+      upsert: true,
     }
   )
     .then((result) => {
@@ -138,7 +141,7 @@ router.route("/test7").get(getChart,async (req, res) => {
     });
 });
 
-router.route("/test8").get(stopSendingData,async (req, res) => {
+router.route("/test8").get(stopSendingData, async (req, res) => {
   await Admin.findOneAndUpdate(
     { _id: "6431cd246b8a210baa7d1fe0" },
     { Start: false },
@@ -181,7 +184,7 @@ router.route("/test10").get(async (req, res) => {
     { Score: false },
     {
       new: true,
-      upsert: true, 
+      upsert: true,
     }
   )
     .then((result) => {
