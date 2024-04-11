@@ -4,6 +4,7 @@ const Stock = require("../models/stock");
 const Student = require("../models/student");
 const Admin = require("../models/admin");
 const getChart = require(`../routes/stock`).getChart;
+const stopSendingData = require(`../routes/stock`).stopSendingData;
 
 global.isAdminStarted = false;
 
@@ -137,7 +138,7 @@ router.route("/test7").get(getChart,async (req, res) => {
     });
 });
 
-router.route("/test8").get(async (req, res) => {
+router.route("/test8").get(stopSendingData,async (req, res) => {
   await Admin.findOneAndUpdate(
     { _id: "6431cd246b8a210baa7d1fe0" },
     { Start: false },

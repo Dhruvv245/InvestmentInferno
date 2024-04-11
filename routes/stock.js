@@ -42,6 +42,14 @@ module.exports.getChart = async (req, res, next) => {
   }
   next();
 };
+module.exports.stopSendingData = (req, res, next) => {
+  for (let stockNum in intervals) {
+    clearInterval(intervals[stockNum]);
+    delete intervals[stockNum];
+  }
+  res.send("Stopped sending data");
+  next();
+};
 
 module.exports.makeStock = async (req, res, next) => {
   // await new Stock({
